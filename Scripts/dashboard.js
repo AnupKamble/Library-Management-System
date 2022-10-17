@@ -14,6 +14,7 @@ function displayData(data) {
 
     
 document.querySelector("#body").innerHTML = "";
+
     data.map(function(ele,idx) {
   
     var box = document.createElement("tr");
@@ -81,18 +82,26 @@ document.querySelector("#body").innerHTML = "";
 
 }
 
-document.querySelector("#filter").addEventListener("change",sort);
 
-function sort() {
+    document.querySelector("#filter").addEventListener("change",filterIt);
 
-      var select = document.querySelector("#filter").value;
+    function filterIt() {
 
-      if ( select === "")
-      return 1;
-      else 
-      return ele.category === select;
+            var filteredBook = booksArr.filter(function(ele) {
+                
+            if (document.getElementById("filter").value === "") {
+                return 1;
+            } 
+            else {
+                return ele.category === document.getElementById("filter").value;
+            }
+         });
+        
+            displayData(filteredBook);
+      }
 
-      displayData(select);
-}
+
+      document.querySelector("#book-count").innerText=booksArr.length;
+
 
 
